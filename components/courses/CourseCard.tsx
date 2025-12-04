@@ -56,7 +56,7 @@ export function CourseCard({
       <div className="relative rounded-2xl bg-zinc-900/50 border border-zinc-800 overflow-hidden hover:border-zinc-700 transition-all duration-300 hover:shadow-lg hover:shadow-violet-500/5">
         {/* Course thumbnail/header */}
         <div
-          className={`h-36 bg-linear-to-br ${styles.gradient} flex items-center justify-center relative overflow-hidden`}
+          className={`h-36 bg-gradient-to-br ${styles.gradient} flex items-center justify-center relative overflow-hidden`}
         >
           {thumbnail?.asset?.url ? (
             <Image

@@ -83,7 +83,7 @@ export function TutorChat() {
             className="
               absolute right-3 top-1/2 -translate-y-1/2
               p-2.5
-              bg-linear-to-r from-cyan-500 to-blue-600
+              bg-gradient-to-r from-cyan-500 to-blue-600
               hover:from-cyan-400 hover:to-blue-500
               disabled:from-slate-600 disabled:to-slate-700
               disabled:cursor-not-allowed

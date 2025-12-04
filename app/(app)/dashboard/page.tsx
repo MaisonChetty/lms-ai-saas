@@ -58,7 +58,7 @@ export default async function DashboardPage() {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
             <h1 className="text-4xl md:text-5xl font-black tracking-tight">
               Welcome back,{" "}
-              <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
                 {firstName}
               </span>
             </h1>
@@ -108,7 +108,7 @@ export default async function DashboardPage() {
           {userTier !== "ultra" && (
             <Link
               href="/pricing"
-              className="p-6 rounded-xl bg-gradient-to-br from-violet-600/20 to-fuchsia-600/20 border border-violet-500/30 hover:border-violet-500/50 transition-colors group"
+              className="p-6 rounded-xl bg-linear-to-br from-violet-600/20 to-fuchsia-600/20 border border-violet-500/30 hover:border-violet-500/50 transition-colors group"
             >
               <div className="flex items-center justify-between">
                 <div>
