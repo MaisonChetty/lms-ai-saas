@@ -122,7 +122,7 @@ function Loading() {
                 </div>
               </div>
               {/* Video controls bar */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-linear-to-t from-black/60 to-transparent">
                 <div className="flex items-center gap-3">
                   <Skeleton className="w-8 h-8 rounded bg-zinc-700" />
                   <Skeleton className="flex-1 h-1 rounded-full bg-zinc-700" />

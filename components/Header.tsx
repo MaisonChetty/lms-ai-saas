@@ -10,6 +10,7 @@ import {
   useAuth,
 } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "@/components/theme-provider";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,6 +24,8 @@ import {
   BookOpen,
   Sparkles,
   Menu,
+  Moon,
+  Sun,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -35,6 +38,7 @@ const loggedOutLinks = [
 export function Header() {
   const pathname = usePathname();
   const { has } = useAuth();
+  const { theme, toggleTheme } = useTheme();
 
   const isUltra = has?.({ plan: "ultra" });
 
@@ -109,6 +113,20 @@ export function Header() {
 
       {/* Right section */}
       <div className="flex items-center gap-3">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="text-zinc-400 hover:text-white hover:bg-zinc-800/50"
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          onClick={toggleTheme}
+        >
+          {theme === "dark" ? (
+            <Sun className="w-5 h-5" />
+          ) : (
+            <Moon className="w-5 h-5" />
+          )}
+        </Button>
+
         <SignedOut>
           {/* Mobile: Dropdown menu */}
           <DropdownMenu>
@@ -147,7 +165,7 @@ export function Header() {
             </Button>
           </SignInButton>
           <Link href="/pricing" className="hidden sm:block">
-            <Button className="bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white border-0 shadow-lg shadow-violet-600/25">
+            <Button className="bg-linear-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white border-0 shadow-lg shadow-violet-600/25">
               Start Learning
             </Button>
           </Link>
@@ -211,16 +229,16 @@ function Logo() {
   return (
     <>
       <div className="relative">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-600 flex items-center justify-center shadow-lg shadow-violet-500/25 group-hover:shadow-violet-500/40 transition-shadow">
+        <div className="w-10 h-10 rounded-xl bg-linear-to-br from-violet-500 to-fuchsia-600 flex items-center justify-center shadow-lg shadow-violet-500/25 group-hover:shadow-violet-500/40 transition-shadow">
           <Code2 className="w-5 h-5 text-white" />
         </div>
-        <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
+        <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-linear-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
           <Play className="w-2 h-2 text-white fill-white" />
         </div>
       </div>
       <div className="flex flex-col">
         <span className="font-bold text-lg tracking-tight leading-none">
-          SONNY
+          BUNNY
         </span>
         <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500">
           Academy

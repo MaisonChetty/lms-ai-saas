@@ -12,7 +12,7 @@ import { Header } from "@/components/Header";
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-[#09090b] text-white overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-hidden transition-colors">
       {/* Animated gradient mesh background */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-violet-600/15 rounded-full blur-[120px] animate-pulse" />
@@ -53,7 +53,7 @@ export default function PricingPage() {
               learning path
             </span>
           </h1>
-          <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Start free, upgrade when you&apos;re ready. Unlock Pro for advanced
             content or go Ultra for AI-powered learning, exclusive
             masterclasses, and 1-on-1 access.
@@ -67,7 +67,7 @@ export default function PricingPage() {
             return (
               <div
                 key={plan.tier}
-                className={`p-6 rounded-xl bg-zinc-900/30 border ${colorClasses.border}`}
+                className={`p-6 rounded-xl bg-card border ${colorClasses.border} transition-colors`}
               >
                 <h3 className={`text-lg font-bold mb-4 ${colorClasses.text}`}>
                   {plan.tier} includes:
@@ -76,7 +76,7 @@ export default function PricingPage() {
                   {plan.features.map((feature) => (
                     <li
                       key={feature}
-                      className="flex items-start gap-2 text-sm text-zinc-300"
+                      className="flex items-start gap-2 text-sm text-muted-foreground"
                     >
                       <CheckCircle2
                         className={`w-4 h-4 mt-0.5 shrink-0 ${colorClasses.text}`}
@@ -91,7 +91,7 @@ export default function PricingPage() {
         </div>
 
         {/* Clerk Pricing Table */}
-        <div className="clerk-pricing-wrapper rounded-2xl bg-zinc-900/50 border border-zinc-800 p-6 md:p-10">
+        <div className="clerk-pricing-wrapper rounded-2xl bg-card border border-border p-6 md:p-10 transition-colors">
           <PricingTable
             appearance={{
               elements: {
@@ -171,7 +171,7 @@ export default function PricingPage() {
               <div className="flex items-center justify-center py-20">
                 <div className="text-center space-y-4">
                   <Loader2 className="h-12 w-12 animate-spin text-violet-500 mx-auto" />
-                  <p className="text-zinc-400 text-lg font-medium">
+                  <p className="text-muted-foreground text-lg font-medium">
                     Loading pricing options...
                   </p>
                 </div>
@@ -182,13 +182,13 @@ export default function PricingPage() {
 
         {/* FAQ or extra info */}
         <div className="mt-16 text-center">
-          <p className="text-zinc-400">
+          <p className="text-muted-foreground">
             Questions?{" "}
-            <span className="text-zinc-500 cursor-not-allowed">
+            <span className="text-muted-foreground cursor-not-allowed">
               Contact us
             </span>{" "}
             or check out our{" "}
-            <span className="text-zinc-500 cursor-not-allowed">
+            <span className="text-muted-foreground cursor-not-allowed">
               FAQ
             </span>
           </p>
@@ -196,7 +196,7 @@ export default function PricingPage() {
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 px-6 lg:px-12 py-12 border-t border-zinc-800/50 max-w-7xl mx-auto mt-20">
+      <footer className="relative z-10 px-6 lg:px-12 py-12 border-t border-border/60 max-w-7xl mx-auto mt-20 transition-colors">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-linear-to-br from-violet-500 to-fuchsia-600 flex items-center justify-center">
@@ -204,18 +204,18 @@ export default function PricingPage() {
             </div>
             <span className="font-bold">Maison&apos;s Academy</span>
           </div>
-          <div className="flex items-center gap-8 text-sm text-zinc-500">
-            <Link href="#" className="hover:text-white transition-colors">
+          <div className="flex items-center gap-8 text-sm text-muted-foreground">
+            <Link href="#" className="hover:text-foreground transition-colors">
               Privacy
             </Link>
-            <Link href="#" className="hover:text-white transition-colors">
+            <Link href="#" className="hover:text-foreground transition-colors">
               Terms
             </Link>
-            <Link href="#" className="hover:text-white transition-colors">
+            <Link href="#" className="hover:text-foreground transition-colors">
               Contact
             </Link>
           </div>
-          <p className="text-sm text-zinc-600">
+          <p className="text-sm text-muted-foreground">
             {new Date().getFullYear()} Maison&apos;s Academy. All rights reserved.
           </p>
         </div>

@@ -50,7 +50,7 @@ export function CourseCompleteButton({
           </div>
           <div>
             <p className="font-semibold text-emerald-400">Course Completed!</p>
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm text-muted-foreground">
               {completedLessons} of {totalLessons} lessons completed
             </p>
           </div>
@@ -60,7 +60,7 @@ export function CourseCompleteButton({
           disabled={isPending}
           variant="ghost"
           size="sm"
-          className="text-zinc-400 hover:text-white hover:bg-zinc-800 sm:ml-auto"
+          className="text-muted-foreground hover:text-foreground hover:bg-secondary/70 sm:ml-auto"
         >
           {isPending ? (
             <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -74,7 +74,7 @@ export function CourseCompleteButton({
   }
 
   return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 bg-zinc-900/50 border border-zinc-800 rounded-xl">
+    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 bg-card border border-border rounded-xl">
       <div className="flex items-center gap-3 flex-1">
         <div className="flex items-center justify-center w-14 h-14 rounded-full bg-violet-500/20 shrink-0">
           <span className="text-base font-bold text-violet-400">
@@ -82,8 +82,8 @@ export function CourseCompleteButton({
           </span>
         </div>
         <div>
-          <p className="font-semibold text-white">Your Progress</p>
-          <p className="text-sm text-zinc-400">
+          <p className="font-semibold text-foreground">Your Progress</p>
+          <p className="text-sm text-muted-foreground">
             {completedLessons} of {totalLessons} lessons completed
           </p>
         </div>
@@ -94,8 +94,8 @@ export function CourseCompleteButton({
         disabled={isPending || !allLessonsCompleted}
         className={
           allLessonsCompleted
-            ? "bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white border-0"
-            : "bg-zinc-800 text-zinc-500 cursor-not-allowed"
+            ? "bg-linear-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-foreground border-0"
+            : "bg-secondary text-muted-foreground cursor-not-allowed"
         }
       >
         {isPending ? (

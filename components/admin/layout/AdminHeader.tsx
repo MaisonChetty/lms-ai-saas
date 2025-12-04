@@ -47,7 +47,7 @@ function AdminHeader() {
           href="/admin"
           className="flex items-center gap-2.5 font-semibold lg:mr-8"
         >
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-600 shadow-lg shadow-violet-500/20">
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-linear-to-br from-violet-500 to-fuchsia-600 shadow-lg shadow-violet-500/20">
             <Code2 className="h-4 w-4 text-white" />
           </div>
           <span className="text-lg text-white hidden sm:inline">Admin</span>

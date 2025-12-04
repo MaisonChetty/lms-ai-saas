@@ -53,10 +53,10 @@ export function CourseCard({
 
   return (
     <Link href={linkHref} className="group block">
-      <div className="relative rounded-2xl bg-zinc-900/50 border border-zinc-800 overflow-hidden hover:border-zinc-700 transition-all duration-300 hover:shadow-lg hover:shadow-violet-500/5">
+      <div className="relative rounded-2xl bg-card border border-border overflow-hidden hover:border-border transition-all duration-300 hover:shadow-lg hover:shadow-violet-500/5">
         {/* Course thumbnail/header */}
         <div
-          className={`h-36 bg-gradient-to-br ${styles.gradient} flex items-center justify-center relative overflow-hidden`}
+          className={`h-36 bg-linear-to-br ${styles.gradient} flex items-center justify-center relative overflow-hidden`}
         >
           {thumbnail?.asset?.url ? (
             <Image
@@ -66,13 +66,15 @@ export function CourseCard({
               className="object-cover"
             />
           ) : (
-            <div className="text-6xl opacity-50">📚</div>
+            <div className="text-6xl opacity-50 text-muted-foreground">
+              📚
+            </div>
           )}
-          <div className="absolute inset-0 bg-black/20" />
+          <div className="absolute inset-0 bg-foreground/10" />
 
           {/* Tier badge or Completed badge */}
           {isCompleted ? (
-            <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-500/90 text-white">
+            <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-500/90 text-foreground">
               <CheckCircle2 className="w-3.5 h-3.5" />
               Completed
             </div>
@@ -86,12 +88,12 @@ export function CourseCard({
 
           {/* Locked overlay */}
           {isLocked && (
-            <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px] flex items-center justify-center">
+            <div className="absolute inset-0 bg-background/80 backdrop-blur-[2px] flex items-center justify-center">
               <div className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 rounded-full bg-zinc-800/80 flex items-center justify-center">
-                  <Lock className="w-5 h-5 text-zinc-400" />
+                <div className="w-12 h-12 rounded-full bg-secondary/80 flex items-center justify-center">
+                  <Lock className="w-5 h-5 text-muted-foreground" />
                 </div>
-                <span className="text-xs text-zinc-400 font-medium">
+                <span className="text-xs text-muted-foreground font-medium">
                   Upgrade to unlock
                 </span>
               </div>
@@ -101,17 +103,17 @@ export function CourseCard({
 
         {/* Course content */}
         <div className="p-5">
-          <h3 className="text-lg font-bold mb-2 text-white group-hover:text-violet-400 transition-colors line-clamp-2">
+          <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-violet-400 transition-colors line-clamp-2">
             {title ?? "Untitled Course"}
           </h3>
 
           {description && (
-            <p className="text-sm text-zinc-400 mb-4 line-clamp-2">
+            <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
               {description}
             </p>
           )}
 
-          <div className="flex items-center gap-4 text-sm text-zinc-500">
+          <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <span className="flex items-center gap-1.5">
               <Layers className="w-4 h-4" />
               {moduleCount ?? 0} modules
@@ -124,18 +126,18 @@ export function CourseCard({
 
           {/* Progress bar */}
           {showProgress && totalLessons > 0 && (
-            <div className="mt-4 pt-4 border-t border-zinc-800">
+            <div className="mt-4 pt-4 border-t border-border">
               <div className="flex items-center justify-between text-sm mb-2">
-                <span className="text-zinc-400">
+                <span className="text-muted-foreground">
                   {completed}/{totalLessons} lessons
                 </span>
-                <span className="text-zinc-500">
+                <span className="text-muted-foreground">
                   {Math.round(progressPercent)}%
                 </span>
               </div>
               <Progress
                 value={progressPercent}
-                className="h-2 bg-zinc-800 [&>div]:bg-emerald-500"
+                className="h-2 bg-secondary [&>div]:bg-emerald-500"
               />
             </div>
           )}

@@ -42,7 +42,7 @@ export function CourseWithModulesAndLessons({
     >
       <AccordionTrigger className="px-4 py-3 hover:bg-zinc-800/50 hover:no-underline transition-colors [&[data-state=open]]:bg-zinc-800/30">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 border border-violet-500/30">
+          <div className="p-2 rounded-lg bg-linear-to-br from-violet-500/20 to-fuchsia-500/20 border border-violet-500/30">
             <BookOpen className="h-4 w-4 text-violet-400" />
           </div>
           <div className="text-left">

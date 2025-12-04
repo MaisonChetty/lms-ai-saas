@@ -88,8 +88,8 @@ export function TutorMessages({ messages, isLoading }: TutorMessagesProps) {
                     shrink-0 w-10 h-10 rounded-xl flex items-center justify-center
                     ${
                       message.role === "assistant"
-                        ? "bg-gradient-to-br from-cyan-400 to-blue-600"
-                        : "bg-gradient-to-br from-violet-500 to-fuchsia-600"
+                        ? "bg-linear-to-br from-cyan-400 to-blue-600"
+                        : "bg-linear-to-br from-violet-500 to-fuchsia-600"
                     }
                   `}
                 >
@@ -107,7 +107,7 @@ export function TutorMessages({ messages, isLoading }: TutorMessagesProps) {
                     ${
                       message.role === "assistant"
                         ? "bg-white/5 text-slate-200 rounded-tl-sm"
-                        : "bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-white rounded-tr-sm"
+                        : "bg-linear-to-r from-cyan-500/20 to-blue-500/20 text-white rounded-tr-sm"
                     }
                   `}
                 >
@@ -122,7 +122,7 @@ export function TutorMessages({ messages, isLoading }: TutorMessagesProps) {
       {/* Loading indicator */}
       {isLoading && messages[messages.length - 1]?.role === "user" && (
         <div className="flex gap-4">
-          <div className="shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
+          <div className="shrink-0 w-10 h-10 rounded-xl bg-linear-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
             <Sparkles className="w-5 h-5 text-white" />
           </div>
           <div className="bg-white/5 px-5 py-4 rounded-2xl rounded-tl-sm">
@@ -169,7 +169,7 @@ function ToolCallUI({ toolPart }: { toolPart: ToolCallPart }) {
 
   return (
     <div className="flex gap-4">
-      <div className="shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
+      <div className="shrink-0 w-10 h-10 rounded-xl bg-linear-to-br from-amber-400 to-orange-500 flex items-center justify-center">
         <Search className="w-5 h-5 text-white" />
       </div>
       <div

@@ -45,7 +45,7 @@ export default async function MyCoursesPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-white overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-hidden transition-colors">
       {/* Animated gradient mesh background */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-violet-600/15 rounded-full blur-[120px] animate-pulse" />
@@ -74,7 +74,7 @@ export default async function MyCoursesPage() {
       <main className="relative z-10 px-6 lg:px-12 py-12 max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">My Courses</h1>
-          <p className="text-zinc-400">
+          <p className="text-muted-foreground">
             Courses you&apos;ve started learning. Pick up where you left off.
           </p>
         </div>
@@ -99,13 +99,13 @@ export default async function MyCoursesPage() {
           </div>
         ) : (
           <div className="text-center py-16">
-            <div className="w-16 h-16 rounded-2xl bg-zinc-800/50 flex items-center justify-center mx-auto mb-4">
-              <BookOpen className="w-8 h-8 text-zinc-500" />
+            <div className="w-16 h-16 rounded-2xl bg-secondary flex items-center justify-center mx-auto mb-4">
+              <BookOpen className="w-8 h-8 text-muted-foreground" />
             </div>
             <h3 className="text-xl font-semibold mb-2">
               No courses started yet
             </h3>
-            <p className="text-zinc-400 max-w-md mx-auto">
+            <p className="text-muted-foreground max-w-md mx-auto">
               Browse our course catalog and start learning. Your progress will
               appear here once you complete your first lesson.
             </p>

@@ -26,18 +26,18 @@ export function GatedFallback({ requiredTier }: GatedFallbackProps) {
 
   return (
     <div
-      className={`relative rounded-2xl bg-gradient-to-br ${gradientMuted} border ${styles.border} p-8 md:p-12 overflow-hidden`}
+      className={`relative rounded-2xl bg-linear-to-br ${gradientMuted} border ${styles.border} p-8 md:p-12 overflow-hidden`}
     >
       {/* Background decoration */}
-      <div className="absolute inset-0 bg-[#09090b]/80" />
+      <div className="absolute inset-0 bg-background/90" />
       <div
-        className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${gradientMuted} rounded-full blur-[100px] opacity-50`}
+        className={`absolute top-0 right-0 w-64 h-64 bg-linear-to-br ${gradientMuted} rounded-full blur-[100px] opacity-50`}
       />
 
       <div className="relative z-10 max-w-xl mx-auto text-center">
         {/* Lock icon */}
         <div
-          className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-zinc-800/50 border ${styles.border} mb-6`}
+          className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-card border ${styles.border} mb-6 transition-colors`}
         >
           <Lock className={`w-7 h-7 ${styles.text}`} />
         </div>
@@ -52,14 +52,14 @@ export function GatedFallback({ requiredTier }: GatedFallbackProps) {
         </h2>
 
         {/* Description */}
-        <p className="text-zinc-400 mb-8 max-w-md mx-auto">
+        <p className="text-muted-foreground mb-8 max-w-md mx-auto">
           This course requires a {displayTier} subscription. Upgrade your plan
           to access this content and unlock all the features below.
         </p>
 
         {/* Features list */}
         {tierFeatures && (
-          <div className="bg-zinc-900/50 rounded-xl p-6 mb-8 text-left">
+          <div className="bg-card rounded-xl p-6 mb-8 text-left border border-border transition-colors">
             <div className="flex items-center gap-2 mb-4">
               <Sparkles className={`w-4 h-4 ${styles.text}`} />
               <span className={`text-sm font-semibold ${styles.text}`}>
@@ -70,7 +70,7 @@ export function GatedFallback({ requiredTier }: GatedFallbackProps) {
               {tierFeatures.features.map((feature) => (
                 <li
                   key={feature}
-                  className="flex items-start gap-2 text-sm text-zinc-300"
+                  className="flex items-start gap-2 text-sm text-muted-foreground"
                 >
                   <CheckCircle2
                     className={`w-4 h-4 mt-0.5 shrink-0 ${styles.text}`}
@@ -86,7 +86,7 @@ export function GatedFallback({ requiredTier }: GatedFallbackProps) {
         <Link href="/pricing">
           <Button
             size="lg"
-            className="bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white border-0 shadow-xl shadow-violet-600/30 px-8"
+            className="bg-linear-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white border-0 shadow-xl shadow-violet-600/30 px-8"
           >
             <Sparkles className="w-4 h-4 mr-2" />
             View Pricing Plans

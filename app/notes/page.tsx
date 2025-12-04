@@ -4,7 +4,7 @@ import { Providers } from "@/components/Providers";
 
 export default function NotesPage() {
   return (
-    <div className="min-h-screen p-8">
+    <div className="min-h-screen p-8 bg-background text-foreground transition-colors">
       <h1 className="text-3xl font-bold">Notes</h1>
       <p className="text-muted-foreground">
         View and test realtime note updates
@@ -43,6 +43,5 @@ export default function NotesPage() {
     </div>
   );
 }
-
 
 

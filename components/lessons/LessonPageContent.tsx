@@ -100,7 +100,7 @@ export function LessonPageContent({ lesson, userId }: LessonPageContentProps) {
                   {lesson.title ?? "Untitled Lesson"}
                 </h1>
                 {lesson.description && (
-                  <p className="text-zinc-400">{lesson.description}</p>
+                  <p className="text-muted-foreground">{lesson.description}</p>
                 )}
               </div>
 
@@ -115,22 +115,24 @@ export function LessonPageContent({ lesson, userId }: LessonPageContentProps) {
 
             {/* Lesson Content */}
             {lesson.content && (
-              <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 md:p-8 mb-6">
+              <div className="bg-card border border-border rounded-xl p-6 md:p-8 mb-6 transition-colors">
                 <div className="flex items-center gap-2 mb-6">
                   <BookOpen className="w-5 h-5 text-violet-400" />
-                  <h2 className="text-lg font-semibold">Lesson Notes</h2>
+                  <h2 className="text-lg font-semibold text-foreground">
+                    Lesson Notes
+                  </h2>
                 </div>
                 <LessonContent content={lesson.content} />
               </div>
             )}
 
             {/* Navigation between lessons */}
-            <div className="flex items-center justify-between pt-6 border-t border-zinc-800">
+            <div className="flex items-center justify-between pt-6 border-t border-border">
               {prevLesson ? (
                 <Link href={`/lessons/${prevLesson.slug}`}>
                   <Button
                     variant="ghost"
-                    className="text-zinc-400 hover:text-white hover:bg-zinc-800"
+                    className="text-muted-foreground hover:text-foreground hover:bg-secondary/70"
                   >
                     <ChevronLeft className="w-4 h-4 mr-2" />
                     <span className="hidden sm:inline">{prevLesson.title}</span>
@@ -143,7 +145,7 @@ export function LessonPageContent({ lesson, userId }: LessonPageContentProps) {
 
               {nextLesson ? (
                 <Link href={`/lessons/${nextLesson.slug}`}>
-                  <Button className="bg-violet-600 hover:bg-violet-500 text-white">
+                  <Button className="bg-violet-600 hover:bg-violet-500 text-foreground">
                     <span className="hidden sm:inline">{nextLesson.title}</span>
                     <span className="sm:hidden">Next</span>
                     <ChevronRight className="w-4 h-4 ml-2" />

@@ -26,7 +26,7 @@ export default async function DashboardPage() {
   const firstName = user.firstName ?? user.username ?? "there";
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-white overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-hidden transition-colors">
       {/* Animated gradient mesh background */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-violet-600/15 rounded-full blur-[120px] animate-pulse" />
@@ -73,7 +73,7 @@ export default async function DashboardPage() {
               </span>
             </div>
           </div>
-          <p className="text-lg text-zinc-400 max-w-2xl">
+          <p className="text-lg text-muted-foreground max-w-2xl">
             Pick up where you left off or discover something new. Your learning
             journey continues here.
           </p>
@@ -81,26 +81,26 @@ export default async function DashboardPage() {
 
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-          <div className="p-6 rounded-xl bg-zinc-900/50 border border-zinc-800">
+          <div className="p-6 rounded-xl bg-card border border-border transition-colors">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-10 h-10 rounded-lg bg-violet-500/20 flex items-center justify-center">
                 <BookOpen className="w-5 h-5 text-violet-400" />
               </div>
               <div>
                 <p className="text-2xl font-bold">{courses.length}</p>
-                <p className="text-sm text-zinc-500">Available Courses</p>
+                <p className="text-sm text-muted-foreground">Available Courses</p>
               </div>
             </div>
           </div>
 
-          <div className="p-6 rounded-xl bg-zinc-900/50 border border-zinc-800">
+          <div className="p-6 rounded-xl bg-card border border-border transition-colors">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center">
                 <Sparkles className="w-5 h-5 text-emerald-400" />
               </div>
               <div>
                 <p className="text-2xl font-bold capitalize">{userTier}</p>
-                <p className="text-sm text-zinc-500">Current Plan</p>
+                <p className="text-sm text-muted-foreground">Current Plan</p>
               </div>
             </div>
           </div>
@@ -112,10 +112,10 @@ export default async function DashboardPage() {
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-lg font-semibold text-white group-hover:text-violet-300 transition-colors">
+                  <p className="text-lg font-semibold text-foreground group-hover:text-violet-300 transition-colors">
                     Upgrade to {userTier === "free" ? "Pro" : "Ultra"}
                   </p>
-                  <p className="text-sm text-zinc-400">
+                  <p className="text-sm text-muted-foreground">
                     {userTier === "pro"
                       ? "Get AI Learning Assistant & exclusive content"
                       : "Unlock more courses & features"}

@@ -31,7 +31,7 @@ export default async function Home() {
   const isSignedIn = !!user;
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-white overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-hidden transition-colors">
       {/* Animated gradient mesh background */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-violet-600/20 rounded-full blur-[120px] animate-pulse" />
@@ -76,7 +76,7 @@ export default async function Home() {
               className="text-5xl md:text-7xl lg:text-[5.5rem] font-black tracking-tight leading-[0.95] mb-8 animate-fade-in"
               style={{ animationDelay: "0.2s" }}
             >
-              <span className="block text-white">Master coding</span>
+              <span className="block text-foreground">Master coding</span>
               <span className="block bg-linear-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
                 the modern way
               </span>
@@ -84,10 +84,10 @@ export default async function Home() {
 
             {/* Subheadline */}
             <p
-              className="text-lg md:text-xl text-zinc-400 max-w-2xl mb-10 leading-relaxed animate-fade-in"
+              className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed animate-fade-in"
               style={{ animationDelay: "0.3s" }}
             >
-              Join Sonny&apos;s Academy and learn from expertly crafted courses,
+              Join Bunny&apos;s Academy and learn from expertly crafted courses,
               modules, and hands-on lessons. From free fundamentals to{" "}
               <span className="text-fuchsia-400">Pro exclusives</span> and{" "}
               <span className="text-cyan-400">Ultra gems</span>.
@@ -113,7 +113,7 @@ export default async function Home() {
                     <Button
                       variant="outline"
                       size="lg"
-                      className="border-zinc-700 bg-white/5 text-white px-8 h-12 text-base hover:bg-white/10 hover:text-white"
+                      className="border-border bg-secondary text-foreground px-8 h-12 text-base hover:bg-secondary/70"
                     >
                       <BookOpen className="w-4 h-4 mr-2" />
                       My Courses
@@ -135,7 +135,7 @@ export default async function Home() {
                     <Button
                       variant="outline"
                       size="lg"
-                      className="border-zinc-700 bg-white/5 text-white px-8 h-12 text-base hover:bg-white/10 hover:text-white"
+                      className="border-border bg-secondary text-foreground px-8 h-12 text-base hover:bg-secondary/70"
                     >
                       <BookOpen className="w-4 h-4 mr-2" />
                       Browse Courses
@@ -166,11 +166,13 @@ export default async function Home() {
                 <div key={stat.label} className="flex flex-col items-center">
                   <div className="flex items-center gap-2 mb-1">
                     <stat.icon className="w-4 h-4 text-violet-400" />
-                    <span className="text-2xl md:text-3xl font-bold text-white">
+                    <span className="text-2xl md:text-3xl font-bold">
                       {stat.value}
                     </span>
                   </div>
-                  <span className="text-sm text-zinc-500">{stat.label}</span>
+                  <span className="text-sm text-muted-foreground">
+                    {stat.label}
+                  </span>
                 </div>
               ))}
             </div>
@@ -243,12 +245,14 @@ export default async function Home() {
                   <plan.icon className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold mb-2">{plan.tier}</h3>
-                <p className="text-zinc-400 text-sm mb-6">{plan.description}</p>
+                <p className="text-muted-foreground text-sm mb-6">
+                  {plan.description}
+                </p>
                 <ul className="space-y-3">
                   {plan.features.map((feature) => (
                     <li
                       key={feature}
-                      className="flex items-center gap-2 text-sm text-zinc-300"
+                      className="flex items-center gap-2 text-sm text-muted-foreground"
                     >
                       <CheckCircle2
                         className={`w-4 h-4 ${plan.color === "emerald" ? "text-emerald-400" : plan.color === "violet" ? "text-violet-400" : "text-cyan-400"}`}
@@ -271,7 +275,7 @@ export default async function Home() {
                 real results
               </span>
             </h2>
-            <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               Each course is packed with modules and lessons designed to take
               you from zero to job-ready.
             </p>
@@ -303,7 +307,7 @@ export default async function Home() {
             <Link href="/dashboard">
               <Button
                 variant="outline"
-                className="border-zinc-700 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+                className="border-border bg-secondary text-foreground hover:bg-secondary/70"
               >
                 View All Courses
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -352,7 +356,7 @@ export default async function Home() {
             ].map((testimonial) => (
               <div
                 key={testimonial.name}
-                className="p-6 rounded-2xl bg-zinc-900/30 border border-zinc-800"
+                className="p-6 rounded-2xl bg-card border border-border transition-colors"
               >
                 <div className="flex items-center gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
@@ -362,16 +366,18 @@ export default async function Home() {
                     />
                   ))}
                 </div>
-                <p className="text-zinc-300 mb-6 leading-relaxed">
+                <p className="text-foreground mb-6 leading-relaxed">
                   &ldquo;{testimonial.content}&rdquo;
                 </p>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-xl">
+                  <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-xl">
                     {testimonial.avatar}
                   </div>
                   <div>
                     <p className="font-semibold text-sm">{testimonial.name}</p>
-                    <p className="text-xs text-zinc-500">{testimonial.role}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {testimonial.role}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -381,7 +387,7 @@ export default async function Home() {
 
         {/* CTA Section */}
         <section className="px-6 lg:px-12 py-20 max-w-7xl mx-auto">
-          <div className="relative rounded-3xl bg-linear-to-br from-violet-600/20 via-fuchsia-600/10 to-cyan-600/20 border border-white/10 p-12 md:p-20 text-center overflow-hidden">
+          <div className="relative rounded-3xl bg-linear-to-br from-violet-600/20 via-fuchsia-600/10 to-cyan-600/20 border border-border p-12 md:p-20 text-center overflow-hidden transition-colors">
             {/* Animated gradient border */}
             <div className="absolute inset-0 rounded-3xl bg-linear-to-r from-violet-500/20 via-fuchsia-500/20 to-cyan-500/20 blur-xl" />
 
@@ -392,7 +398,7 @@ export default async function Home() {
               <h2 className="text-3xl md:text-5xl font-bold mb-6">
                 Ready to level up your skills?
               </h2>
-              <p className="text-zinc-400 text-lg max-w-xl mx-auto mb-10">
+              <p className="text-muted-foreground text-lg max-w-xl mx-auto mb-10">
                 Start with free courses or unlock everything with Pro and Ultra.
                 Your coding journey begins now.
               </p>
@@ -410,7 +416,7 @@ export default async function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="px-6 lg:px-12 py-12 border-t border-zinc-800/50 max-w-7xl mx-auto">
+        <footer className="px-6 lg:px-12 py-12 border-t border-border/60 max-w-7xl mx-auto transition-colors">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-linear-to-br from-violet-500 to-fuchsia-600 flex items-center justify-center">
@@ -418,18 +424,18 @@ export default async function Home() {
               </div>
               <span className="font-bold">Sonny&apos;s Academy</span>
             </div>
-            <div className="flex items-center gap-8 text-sm text-zinc-500">
-              <Link href="#" className="hover:text-white transition-colors">
+            <div className="flex items-center gap-8 text-sm text-muted-foreground">
+              <Link href="#" className="hover:text-foreground transition-colors">
                 Privacy
               </Link>
-              <Link href="#" className="hover:text-white transition-colors">
+              <Link href="#" className="hover:text-foreground transition-colors">
                 Terms
               </Link>
-              <Link href="#" className="hover:text-white transition-colors">
+              <Link href="#" className="hover:text-foreground transition-colors">
                 Contact
               </Link>
             </div>
-            <p className="text-sm text-zinc-600">
+            <p className="text-sm text-muted-foreground">
               © 2024 Sonny&apos;s Academy. All rights reserved.
             </p>
           </div>

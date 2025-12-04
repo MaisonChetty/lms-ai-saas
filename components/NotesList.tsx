@@ -8,11 +8,11 @@ import { CreateNoteButton } from "@/components/CreateNoteButton";
 // Fallback component that matches NoteCard dimensions to prevent layout shift
 function NoteCardSkeleton() {
   return (
-    <div className="border rounded-lg p-6 animate-pulse">
-      <div className="h-8 bg-gray-200 rounded w-3/4 mb-2" />
-      <div className="h-4 bg-gray-200 rounded w-1/4 mb-2" />
-      <div className="h-20 bg-gray-200 rounded w-full mb-2" />
-      <div className="h-3 bg-gray-200 rounded w-1/2" />
+    <div className="border border-border rounded-lg p-6 animate-pulse bg-card">
+      <div className="h-8 bg-muted rounded w-3/4 mb-2" />
+      <div className="h-4 bg-muted rounded w-1/4 mb-2" />
+      <div className="h-20 bg-muted rounded w-full mb-2" />
+      <div className="h-3 bg-muted rounded w-1/2" />
     </div>
   );
 }
@@ -42,7 +42,7 @@ export function NotesList() {
           </p>
           <a
             href="/studio"
-            className="text-blue-500 hover:underline mt-2 inline-block"
+            className="text-primary hover:underline mt-2 inline-block"
           >
             Go to Studio →
           </a>
@@ -63,7 +63,7 @@ export function NotesList() {
           <li>Keep this page open</li>
           <li>
             Open the{" "}
-            <a href="/studio" className="text-blue-500 hover:underline">
+            <a href="/studio" className="text-primary hover:underline">
               Studio
             </a>{" "}
             in another tab
@@ -85,6 +85,5 @@ export function NotesList() {
     </div>
   );
 }
-
 
 

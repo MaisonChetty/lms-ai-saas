@@ -62,13 +62,13 @@ export function CourseList({
 
           {showSearch && (
             <div className="relative w-full sm:w-72">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
                 type="text"
                 placeholder="Search courses..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-zinc-900/50 border-zinc-800 text-white placeholder:text-zinc-500 focus-visible:ring-violet-500"
+                className="pl-10 bg-card border-border text-foreground placeholder:text-muted-foreground focus-visible:ring-violet-500"
               />
             </div>
           )}
@@ -94,10 +94,10 @@ export function CourseList({
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center py-16 text-center">
-          <div className="w-16 h-16 rounded-full bg-zinc-800/50 flex items-center justify-center mb-4">
-            <Search className="w-6 h-6 text-zinc-500" />
+          <div className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center mb-4">
+            <Search className="w-6 h-6 text-muted-foreground" />
           </div>
-          <p className="text-zinc-400">{emptyMessage}</p>
+          <p className="text-muted-foreground">{emptyMessage}</p>
           {(tierFilter !== "all" || searchQuery) && (
             <button
               type="button"

@@ -30,7 +30,7 @@ export function CourseHero({
       {/* Back link */}
       <Link
         href="/dashboard"
-        className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors mb-8"
+        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
       >
         <ArrowLeft className="w-4 h-4" />
         Back to dashboard
@@ -39,7 +39,7 @@ export function CourseHero({
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Thumbnail */}
         <div
-          className={`relative w-full lg:w-80 h-48 lg:h-52 rounded-2xl bg-gradient-to-br ${styles.gradient} flex items-center justify-center overflow-hidden shrink-0`}
+          className={`relative w-full lg:w-80 h-48 lg:h-52 rounded-2xl bg-linear-to-br ${styles.gradient} flex items-center justify-center overflow-hidden shrink-0`}
         >
           {thumbnail?.asset?.url ? (
             <Image
@@ -49,9 +49,9 @@ export function CourseHero({
               className="object-cover"
             />
           ) : (
-            <div className="text-7xl opacity-50">📚</div>
+            <div className="text-7xl opacity-50 text-muted-foreground">📚</div>
           )}
-          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute inset-0 bg-foreground/10" />
         </div>
 
         {/* Course Info */}
@@ -63,7 +63,7 @@ export function CourseHero({
             {category?.title && (
               <Badge
                 variant="outline"
-                className="border-zinc-700 text-zinc-400"
+                className="border-border text-muted-foreground"
               >
                 <Tag className="w-3 h-3 mr-1" />
                 {category.title}
@@ -71,17 +71,17 @@ export function CourseHero({
             )}
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-4 text-white">
+          <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-4 text-foreground">
             {title ?? "Untitled Course"}
           </h1>
 
           {description && (
-            <p className="text-lg text-zinc-400 mb-6 leading-relaxed max-w-2xl">
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed max-w-2xl">
               {description}
             </p>
           )}
 
-          <div className="flex items-center gap-6 text-sm text-zinc-500">
+          <div className="flex items-center gap-6 text-sm text-muted-foreground">
             <span className="flex items-center gap-2">
               <BookOpen className="w-4 h-4" />
               {moduleCount ?? 0} modules

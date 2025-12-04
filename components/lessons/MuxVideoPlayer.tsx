@@ -58,11 +58,11 @@ export function MuxVideoPlayer({
   if (!playbackId) {
     return (
       <div
-        className={`aspect-video bg-zinc-900 rounded-xl flex items-center justify-center ${className}`}
+        className={`aspect-video bg-card border border-border rounded-xl flex items-center justify-center ${className}`}
       >
         <div className="text-center">
-          <VideoOff className="w-12 h-12 text-zinc-600 mx-auto mb-3" />
-          <p className="text-zinc-500">No video available</p>
+          <VideoOff className="w-12 h-12 text-muted-foreground mx-auto mb-3" />
+          <p className="text-muted-foreground">No video available</p>
         </div>
       </div>
     );
@@ -71,11 +71,11 @@ export function MuxVideoPlayer({
   if (isLoading) {
     return (
       <div
-        className={`aspect-video bg-zinc-900 rounded-xl flex items-center justify-center ${className}`}
+        className={`aspect-video bg-card border border-border rounded-xl flex items-center justify-center ${className}`}
       >
         <div className="text-center">
-          <VideoOff className="w-12 h-12 text-zinc-600 mx-auto mb-3 animate-pulse" />
-          <p className="text-zinc-500">Loading video...</p>
+          <VideoOff className="w-12 h-12 text-muted-foreground mx-auto mb-3 animate-pulse" />
+          <p className="text-muted-foreground">Loading video...</p>
         </div>
       </div>
     );

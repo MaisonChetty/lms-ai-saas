@@ -43,16 +43,16 @@ export function LessonSidebar({
 
   return (
     <div className="w-full lg:w-80 shrink-0">
-      <div className="sticky top-24 bg-zinc-900/50 border border-zinc-800 rounded-xl overflow-hidden">
+      <div className="sticky top-24 bg-card border border-border rounded-xl overflow-hidden transition-colors">
         {/* Course header */}
-        <div className="p-4 border-b border-zinc-800">
+        <div className="p-4 border-b border-border">
           <Link
             href={`/courses/${courseSlug}`}
-            className="text-sm text-zinc-400 hover:text-white transition-colors"
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            ← Back to course
+            ƒ+? Back to course
           </Link>
-          <h3 className="font-semibold text-white mt-2 line-clamp-2">
+          <h3 className="font-semibold text-foreground mt-2 line-clamp-2">
             {courseTitle ?? "Course"}
           </h3>
         </div>
@@ -75,23 +75,23 @@ export function LessonSidebar({
                 <AccordionItem
                   key={module._id}
                   value={module._id}
-                  className="border-b border-zinc-800 last:border-b-0"
+                  className="border-b border-border last:border-b-0"
                 >
-                  <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-zinc-800/50 text-left">
+                  <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-secondary/70 text-left transition-colors">
                     <div className="flex items-center gap-3 flex-1 min-w-0">
                       <span className="flex items-center justify-center w-6 h-6 rounded bg-violet-500/20 text-violet-400 text-xs font-bold shrink-0">
                         {moduleIndex + 1}
                       </span>
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2">
-                          <span className="text-xs text-zinc-500 uppercase tracking-wider">
+                          <span className="text-xs text-muted-foreground uppercase tracking-wider">
                             Module
                           </span>
                         </div>
-                        <p className="font-medium text-sm text-white truncate mt-0.5">
+                        <p className="font-medium text-sm text-foreground truncate mt-0.5">
                           {module.title ?? "Untitled Module"}
                         </p>
-                        <p className="text-xs text-zinc-500">
+                        <p className="text-xs text-muted-foreground">
                           {completedCount}/{lessonCount} lessons
                         </p>
                       </div>
@@ -99,7 +99,7 @@ export function LessonSidebar({
                   </AccordionTrigger>
 
                   <AccordionContent className="pb-3 pt-1">
-                    <div className="ml-4 border-l-2 border-zinc-800 pl-3 space-y-1">
+                    <div className="ml-4 border-l-2 border-border pl-3 space-y-1">
                       {module.lessons?.map((lesson, lessonIndex) => {
                         const isActive = lesson._id === currentLessonId;
                         const isCompleted = completedLessonIds.includes(
@@ -114,7 +114,7 @@ export function LessonSidebar({
                               "flex items-center gap-2.5 pl-2 pr-3 py-2 rounded-lg text-sm transition-colors",
                               isActive
                                 ? "bg-violet-500/20 text-violet-300"
-                                : "text-zinc-400 hover:text-white hover:bg-zinc-800/50",
+                                : "text-muted-foreground hover:text-foreground hover:bg-secondary/70",
                             )}
                           >
                             {isCompleted ? (
@@ -122,7 +122,7 @@ export function LessonSidebar({
                             ) : isActive ? (
                               <Play className="w-4 h-4 text-violet-400 shrink-0 fill-violet-400" />
                             ) : (
-                              <Circle className="w-4 h-4 text-zinc-600 shrink-0" />
+                              <Circle className="w-4 h-4 text-muted-foreground shrink-0" />
                             )}
                             <span className="truncate">
                               {lesson.title ?? "Untitled Lesson"}
