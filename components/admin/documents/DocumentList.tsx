@@ -55,17 +55,17 @@ function DocumentItem({
 
   return (
     <Link href={`${basePath}/${documentId}`}>
-      <div className="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800 hover:bg-zinc-800/50 hover:border-zinc-700 transition-all cursor-pointer group">
+      <div className="p-4 rounded-xl bg-card border border-border hover:bg-secondary/70 hover:border-border transition-all cursor-pointer group">
         <div className="flex items-center justify-between">
           <div className="space-y-1 flex-1 min-w-0">
-            <h3 className="font-medium text-white truncate">{title}</h3>
+            <h3 className="font-medium text-foreground truncate">{title}</h3>
             {description && (
-              <p className="text-sm text-zinc-500 line-clamp-1">
+              <p className="text-sm text-muted-foreground line-clamp-1">
                 {description}
               </p>
             )}
           </div>
-          <ChevronRight className="h-5 w-5 text-zinc-600 group-hover:text-zinc-400 group-hover:translate-x-1 transition-all shrink-0 ml-4" />
+          <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 transition-all shrink-0 ml-4" />
         </div>
       </div>
     </Link>
@@ -94,13 +94,13 @@ function DocumentListContent({
 
   if (!documents || documents.length === 0) {
     return (
-      <div className="p-8 rounded-xl bg-zinc-900/50 border border-zinc-800 text-center">
-        <p className="text-zinc-500">No {documentType}s found</p>
+      <div className="p-8 rounded-xl bg-card border border-border text-center">
+        <p className="text-muted-foreground">No {documentType}s found</p>
         <button
           type="button"
           onClick={onCreateDocument}
           disabled={isCreating}
-          className="mt-4 inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-zinc-300 border border-zinc-700 rounded-lg hover:bg-zinc-800 hover:border-zinc-600 disabled:opacity-50 transition-colors"
+          className="mt-4 inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-foreground border border-border rounded-lg hover:bg-secondary/70 disabled:opacity-50 transition-colors"
         >
           {isCreating ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -157,17 +157,19 @@ export function DocumentList({
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-white">
+          <h1 className="text-2xl font-semibold tracking-tight text-foreground">
             {title}
           </h1>
-          {description && <p className="text-zinc-400 mt-1">{description}</p>}
+          {description && (
+            <p className="text-muted-foreground mt-1">{description}</p>
+          )}
         </div>
         {showCreateButton && (
           <button
             type="button"
             onClick={handleCreateDocument}
             disabled={isCreating}
-            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-linear-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 disabled:opacity-50 rounded-lg shadow-lg shadow-violet-500/20 transition-all"
+            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-foreground bg-linear-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 disabled:opacity-50 rounded-lg shadow-lg shadow-violet-500/20 transition-all"
           >
             {isCreating ? (
               <Loader2 className="h-4 w-4 animate-spin" />
@@ -181,19 +183,19 @@ export function DocumentList({
 
       {/* Search Input */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
           type="text"
           placeholder={`Search ${documentType}s...`}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="pl-10 pr-10 bg-zinc-900/50 border-zinc-800 text-white placeholder:text-zinc-500 focus:border-violet-500 focus:ring-violet-500/20"
+          className="pl-10 pr-10 bg-card border-border text-foreground placeholder:text-muted-foreground focus:border-violet-500 focus:ring-violet-500/20"
         />
         {searchQuery && (
           <button
             type="button"
             onClick={() => setSearchQuery("")}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 transition-colors"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
           >
             <X className="h-4 w-4" />
           </button>

@@ -7,7 +7,7 @@ import { Providers } from "@/components/Providers";
 function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <Providers>
-      <div className="dark min-h-screen bg-[#09090b] text-white">
+      <div className="min-h-screen bg-background text-foreground transition-colors">
         {/* Subtle noise texture overlay */}
         <div
           className="fixed inset-0 pointer-events-none opacity-[0.015]"
