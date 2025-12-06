@@ -336,21 +336,21 @@ export default async function Home() {
                 name: "Alex Chen",
                 role: "Junior Developer",
                 content:
-                  "Sonny's teaching style is incredible. I went from knowing nothing to landing my first dev job in 6 months!",
+                  "Bunny's teaching style is incredible. I went from knowing nothing to landing my first dev job in 6 months!",
                 avatar: "🧑‍💻",
               },
               {
-                name: "Sarah Miller",
+                name: "Jack Rabbit",
                 role: "Freelancer",
                 content:
-                  "The Ultra tier is worth every penny. The exclusive content and 1-on-1 sessions transformed my career.",
+                  "The Ultra tier is beyond anything i could never imagine. The exclusive content transformed my career.",
                 avatar: "👩‍💼",
               },
               {
-                name: "James Wilson",
+                name: "Daffy Duck",
                 role: "CS Student",
                 content:
-                  "Best investment I've made. The Pro courses filled gaps my university courses never covered.",
+                  "Best investment I've made. The Pro courses helped me fill the gaps in my university courses.",
                 avatar: "🎓",
               },
             ].map((testimonial) => (
