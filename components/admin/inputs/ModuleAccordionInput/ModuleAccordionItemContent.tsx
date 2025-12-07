@@ -92,7 +92,7 @@ export function ModuleAccordionItemContent({
     dataset,
     path: "lessons",
   });
-  const editLessons = useEditDocument({
+  const editLessons = useEditDocument<SanityReference[]>({
     documentId: moduleId,
     documentType: "module",
     projectId,
@@ -108,7 +108,9 @@ export function ModuleAccordionItemContent({
   });
 
   const title = (moduleData as { title?: string })?.title || "Untitled Module";
-  const lessons = (currentLessons as SanityReference[]) ?? [];
+  const lessons: SanityReference[] = Array.isArray(currentLessons)
+    ? (currentLessons as SanityReference[])
+    : [];
   const currentLessonIds = new Set(lessons.map((l) => l._ref));
 
   // Filter out already-added lessons
@@ -137,7 +139,7 @@ export function ModuleAccordionItemContent({
 
       if (oldIndex !== -1 && newIndex !== -1) {
         const newLessons = arrayMove(lessons, oldIndex, newIndex);
-        editLessons(newLessons as SanityReference[]);
+        editLessons(() => newLessons as SanityReference[]);
       }
     }
   };
@@ -151,12 +153,12 @@ export function ModuleAccordionItemContent({
       _key: crypto.randomUUID(),
     };
 
-    editLessons([...lessons, newLesson] as SanityReference[]);
+    editLessons(() => [...lessons, newLesson] as SanityReference[]);
     setSelectedLessonToAdd("");
   };
 
   const handleRemoveLesson = (lessonRef: string) => {
-    editLessons(lessons.filter((l) => l._ref !== lessonRef) as SanityReference[]);
+    editLessons(() => lessons.filter((l) => l._ref !== lessonRef) as SanityReference[]);
   };
 
   const lessonSortableIds = lessons.map((l) => l._key ?? l._ref);
@@ -294,4 +296,3 @@ export function ModuleAccordionItemContent({
     </div>
   );
 }
-

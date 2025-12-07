@@ -47,12 +47,14 @@ export async function POST(request: Request) {
     abortController.abort(`Request ${requestId} timed out`);
   }, 30_000);
 
-  console.log("[ChatAPI] Request received", {
-    requestId,
-    userId,
-    messageCount: messages.length,
-    totalChars,
-  });
+  if (process.env.ENABLE_CHAT_LOGS === "true") {
+    console.log("[ChatAPI] Request received", {
+      requestId,
+      userId,
+      messageCount: messages.length,
+      totalChars,
+    });
+  }
 
   try {
     return await createAgentUIStreamResponse({
@@ -62,9 +64,11 @@ export async function POST(request: Request) {
     });
   } finally {
     clearTimeout(timeout);
-    console.log("[ChatAPI] Request finished", {
-      requestId,
-      durationMs: Date.now() - requestStart,
-    });
+    if (process.env.ENABLE_CHAT_LOGS === "true") {
+      console.log("[ChatAPI] Request finished", {
+        requestId,
+        durationMs: Date.now() - requestStart,
+      });
+    }
   }
 }

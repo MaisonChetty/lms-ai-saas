@@ -77,6 +77,7 @@ You're a tutor who knows our course content well and helps students learn!`,
     searchCourses: searchCoursesTool,
   },
   onStepFinish: (step) => {
+    if (process.env.ENABLE_CHAT_LOGS !== "true") return;
     const stepNumber = (step as { stepNumber?: number }).stepNumber;
     const usage = (step as { usage?: unknown }).usage;
     console.log("[TutorAgent] Step complete", {
@@ -87,6 +88,7 @@ You're a tutor who knows our course content well and helps students learn!`,
     });
   },
   onFinish: (event) => {
+    if (process.env.ENABLE_CHAT_LOGS !== "true") return;
     const totalUsage = (event as { totalUsage?: unknown }).totalUsage;
     console.log("[TutorAgent] Session complete", {
       totalUsage,
