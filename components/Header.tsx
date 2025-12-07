@@ -37,10 +37,20 @@ const loggedOutLinks = [
 
 export function Header() {
   const pathname = usePathname();
-  const { has } = useAuth();
+  const { has, userId } = useAuth();
   const { theme, toggleTheme } = useTheme();
 
   const isUltra = has?.({ plan: "ultra" });
+  const adminIdsRaw =
+    process.env.NEXT_PUBLIC_ADMIN_CLERK_USER_IDS ||
+    process.env.ADMIN_CLERK_USER_IDS ||
+    "";
+  const adminIds = adminIdsRaw
+    .split(",")
+    .map((id) => id.trim())
+    .filter(Boolean);
+  const adminIdSet = new Set(adminIds);
+  const isAdmin = !!userId && adminIdSet.has(userId);
 
   const loggedInLinks = [
     { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -49,6 +59,7 @@ export function Header() {
     ...(isUltra
       ? [{ href: "/pricing", label: "Account", icon: Sparkles }]
       : [{ href: "/pricing", label: "Upgrade", icon: Sparkles }]),
+    ...(isAdmin ? [{ href: "/admin", label: "Admin", icon: LayoutDashboard }] : []),
   ];
 
   return (

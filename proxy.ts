@@ -1,7 +1,7 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-const isProtectedRoute = createRouteMatcher(["/dashboard(.*)", "/lessons(.*)"]);
+const isProtectedRoute = createRouteMatcher(["/dashboard(.*)", "/lessons(.*)", "/admin(.*)"]);
 
 const RATE_LIMIT_WINDOW_MS = 60_000; // 1 minute
 const RATE_LIMIT_MAX_REQUESTS = 30; // per IP per window
@@ -15,7 +15,8 @@ function getClientIp(req: Request & { ip?: string }): string {
 
 function isOriginAllowed(req: Request & { nextUrl?: URL }): boolean {
   const originHeader = req.headers.get("origin");
-  if (!originHeader) return false;
+  // Allow when Origin is missing (server-to-server or same-site fetches often omit it)
+  if (!originHeader) return true;
   const requestOrigin =
     req instanceof Request && "nextUrl" in req
       ? `${(req as any).nextUrl.protocol}//${(req as any).nextUrl.host}`
@@ -36,8 +37,19 @@ function isRateLimited(ip: string): boolean {
   return recent.length > RATE_LIMIT_MAX_REQUESTS;
 }
 
+function isAdminAllowed(pathname: string, userId: string | null | undefined) {
+  if (!pathname.startsWith("/admin")) return true;
+  const allowedAdmins = (process.env.ADMIN_CLERK_USER_IDS || "")
+    .split(",")
+    .map((id) => id.trim())
+    .filter(Boolean);
+  if (allowedAdmins.length === 0) return false;
+  return !!userId && allowedAdmins.includes(userId);
+}
+
 export default clerkMiddleware(async (auth, req) => {
   const isApiRoute = req.nextUrl.pathname.startsWith("/api");
+  const pathname = req.nextUrl.pathname;
 
   if (isApiRoute) {
     if (!isOriginAllowed(req)) {
@@ -58,6 +70,13 @@ export default clerkMiddleware(async (auth, req) => {
 
   if (isProtectedRoute(req)) {
     await auth.protect();
+    const { userId } = await auth();
+    if (!isAdminAllowed(pathname, userId)) {
+      if (pathname.startsWith("/admin")) {
+        return NextResponse.redirect(new URL("/", req.nextUrl));
+      }
+      return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
+    }
   }
 
   return NextResponse.next();
