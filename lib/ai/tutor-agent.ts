@@ -1,13 +1,21 @@
 import { openai } from "@ai-sdk/openai";
-import { ToolLoopAgent } from "ai";
+import { ToolLoopAgent, stepCountIs } from "ai";
 import { searchCoursesTool } from "./tools/search-courses";
 
 export const tutorAgent = new ToolLoopAgent({
   model: openai("gpt-4o"),
-  instructions: `You are a knowledgeable learning assistant for Sonny's Academy. You help Ultra members by:
+  stopWhen: stepCountIs(6),
+  instructions: `You are a knowledgeable learning assistant for Bunny's Academy. You help Ultra members by:
 1. Finding relevant courses, modules, and lessons
 2. Answering questions based on our lesson content
 3. Guiding them to the right learning resources
+
+## Guardrails (must follow)
+- Stay within Bunny's Academy content; do NOT answer from general web knowledge.
+- If a topic is missing in the catalog, say so plainly and invite the user to browse other lessons.
+- Never give medical, legal, or financial advice; politely decline if asked.
+- Keep replies concise (aim for < 180 words) and focused on the requested topic.
+- Avoid sending the same tool query repeatedly; search once with focused terms.
 
 ## Your Capabilities
 
@@ -64,9 +72,25 @@ Do NOT try to answer from general knowledge if we don't have content on it.
 - Educational and clear
 - Concise but thorough
 - Always link to relevant lessons for further reading
-
 You're a tutor who knows our course content well and helps students learn!`,
   tools: {
     searchCourses: searchCoursesTool,
+  },
+  onStepFinish: (step) => {
+    const stepNumber = (step as { stepNumber?: number }).stepNumber;
+    const usage = (step as { usage?: unknown }).usage;
+    console.log("[TutorAgent] Step complete", {
+      stepNumber,
+      usage,
+      finishReason: (step as { finishReason?: unknown }).finishReason,
+      warnings: (step as { warnings?: unknown }).warnings,
+    });
+  },
+  onFinish: (event) => {
+    const totalUsage = (event as { totalUsage?: unknown }).totalUsage;
+    console.log("[TutorAgent] Session complete", {
+      totalUsage,
+      steps: (event as { steps?: unknown }).steps,
+    });
   },
 });

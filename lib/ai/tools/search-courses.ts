@@ -27,6 +27,9 @@ const ALL_COURSES_WITH_CONTENT_QUERY = defineQuery(`*[
   }
 }`);
 
+const CACHE_TTL_MS = 60_000;
+const searchCache = new Map<string, { expiresAt: number; result: SearchResponse }>();
+
 const courseSearchSchema = z.object({
   query: z
     .string()
@@ -59,6 +62,41 @@ interface Course {
   category: string | null;
   modules?: Module[];
 }
+
+interface FormattedCourse {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  tier: string;
+  category: string | null;
+  url: string;
+  moduleCount: number;
+  lessonCount: number;
+  modules: Array<{
+    title: string;
+    description: string | null;
+    lessons: Array<{
+      title: string;
+      slug: string | null;
+      description: string | null;
+      contentPreview: string | null;
+      lessonUrl: string | null;
+    }>;
+  }>;
+}
+
+type SearchResponse =
+  | {
+      found: false;
+      message: string;
+      courses: [];
+    }
+  | {
+      found: true;
+      message: string;
+      courses: FormattedCourse[];
+    };
 
 // Helper function to check if text contains search term (case-insensitive)
 function textContains(
@@ -108,9 +146,19 @@ export const searchCoursesTool = tool({
     console.log("[SearchCourses] Query received:", query);
 
     // Fetch all courses with their full content using the same method as the rest of the app
-    const { data: allCourses } = await sanityFetch({
+    const cacheKey = query.trim().toLowerCase();
+    const now = Date.now();
+
+    const cached = searchCache.get(cacheKey);
+    if (cached && cached.expiresAt > now) {
+      console.log("[SearchCourses] Returning cached result for", cacheKey);
+      return cached.result;
+    }
+
+    const fetchResult = await sanityFetch({
       query: ALL_COURSES_WITH_CONTENT_QUERY,
     });
+    const { data: allCourses } = fetchResult;
 
     console.log("[SearchCourses] Courses fetched:", allCourses.length);
     console.log(
@@ -197,10 +245,17 @@ export const searchCoursesTool = tool({
       };
     });
 
-    return {
+    const result: SearchResponse = {
       found: true,
       message: `Found ${scoredCourses.length} course${scoredCourses.length === 1 ? "" : "s"} with relevant content.`,
       courses: formattedCourses,
     };
+
+    searchCache.set(cacheKey, {
+      expiresAt: now + CACHE_TTL_MS,
+      result,
+    });
+
+    return result;
   },
 });

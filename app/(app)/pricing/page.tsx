@@ -202,7 +202,7 @@ export default function PricingPage() {
             <div className="w-8 h-8 rounded-lg bg-linear-to-br from-violet-500 to-fuchsia-600 flex items-center justify-center">
               <Code2 className="w-4 h-4 text-white" />
             </div>
-            <span className="font-bold">Maison&apos;s Academy</span>
+            <span className="font-bold">Bunny&apos;s Academy</span>
           </div>
           <div className="flex items-center gap-8 text-sm text-muted-foreground">
             <Link href="#" className="hover:text-foreground transition-colors">
@@ -216,7 +216,7 @@ export default function PricingPage() {
             </Link>
           </div>
           <p className="text-sm text-muted-foreground">
-            {new Date().getFullYear()} Maison&apos;s Academy. All rights reserved.
+            {new Date().getFullYear()} Bunny&apos;s Academy. All rights reserved.
           </p>
         </div>
       </footer>
